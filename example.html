@@ -1,14 +1,46 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./node_modules/cesium/Build/Cesium/Cesium.js"></script>
-    <link href="./node_modules/cesium/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
-    <title>Cesium</title>
-  </head>
-  <body>
-    <div style="width:100vw;height:100vh" id="cesiumContainer"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="./node_modules/cesium/Build/Cesium/Cesium.js"></script>
+  <link href="./node_modules/cesium/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+  <title>Cesium</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    #cesiumContainer{
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cesiumContainer"></div>
+  <script type="module">
+    import token from './.config/token'
+    import examples from './example/examples';
+
+    Cesium.Ion.defaultAccessToken = token;//'your_access_token';
+
+    const url = new URL(window.location.href);
+    const id = +url.searchParams.get('id');
+
+    const example = examples.find(item => item.id === id);
+    if (example) {
+      new example.class();
+    } else {
+      if (window.confirm('没有找到对应的示例，是否跳转到首页？')) {
+        window.location.href = './index.html';
+      }
+    }
+
+  </script>
+</body>
+
 </html>
