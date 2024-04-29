@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cesium</title>
+  </head>
+  <body>
+    <div id="app">
+    </div>
+    <script>
+      const examples = [
+        {
+          title:'Hello World',
+          cid: 'hello-world',
+        },
+        {
+          title:'Line',
+          cid: 'line',
+        }
+      ]
+      const app = document.getElementById('app')
+      examples.forEach((example) => {
+        const div = document.createElement('div')
+        div.innerHTML = `<a href="example.html?cid=${example.cid}">${example.title}</a>`
+        app.appendChild(div)
+      })
+      
+
+
+    </script>
+  </body>
+</html>
